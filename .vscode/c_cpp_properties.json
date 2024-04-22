@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "Win32",
+            "configurationProviderInCppPropertiesJson": "ms-vscode.cmake-tools",
+            "includePath": [
+                "e:/CPP_Project/**",
+                "D:/Dev/vcpkg/installed/x64-windows/include",
+                "${workspaceFolder}/external/spdlog/include",
+                "${workspaceFolder}/include",
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "cppStandard": "c++20",
+            "mergeConfigurations": false,
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "browse": {
+                "path": [
+                    "e:/CPP_Project"
+                ],
+                "limitSymbolsToIncludedHeaders": true
+            }
+        }
+    ],
+    "version": 4
+}
