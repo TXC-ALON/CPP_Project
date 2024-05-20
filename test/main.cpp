@@ -14,11 +14,14 @@ int main()
     spdlog::debug("This message should be displayed..");
 
     // change log pattern
-    spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^---%L---%$] [thread %t] %v");
-
+    // spdlog::set_pattern("[%H:%M:%S %z] [%n] [%^%L%$] [thread %t] %v");
+    spdlog::set_pattern("[%H:%M:%S.%f] [\033[1;33m%l\033[0m] [%!][%s:%#]: %^%v%$");
     // Compile time log levels
     // Note that this does not change the current log level, it will only
     // remove (depending on SPDLOG_ACTIVE_LEVEL) the call on the release code.
     SPDLOG_TRACE("Some trace message with param {}", 42);
+    SPDLOG_INFO("Positional args are {1} {0}..", "too", "supported");
     SPDLOG_DEBUG("Some debug message");
+    SPDLOG_ERROR("Some error message");
+    SPDLOG_CRITICAL("Some CRITICAL message with param {}", 552);
 }

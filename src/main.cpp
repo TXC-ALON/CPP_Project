@@ -25,4 +25,14 @@ int main()
     {
         worker.join();
     }
+    spdlog::set_pattern("[%H:%M:%S.%f] [%l] [%!][%s:%#]: %^%v%$");
+    // Compile time log levels
+    // Note that this does not change the current log level, it will only
+    // remove (depending on SPDLOG_ACTIVE_LEVEL) the call on the release code.
+    LOG_TRACE("Some trace message with param {}", 42);
+    LOG_DEBUG("Some debug message");
+    LOG_WARN("Some WARNING message");
+    LOG_INFO("Positional args are {1} {0}..", "too", "supported");
+    LOG_ERROR("Some error message");
+    LOG_FATAL("Some CRITICAL message with param {}", 552);
 }

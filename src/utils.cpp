@@ -16,11 +16,11 @@ namespace Utils
     void Utils::set_multi_sink(int console_level, int file_level)
     {
         auto console_sink = std::make_shared<spdlog::sinks::stdout_color_sink_mt>();
-        console_sink->set_pattern("%^[%H:%M:%S.%f] [%L] [%!][%s:%#]: %v%$");
+        console_sink->set_pattern("%^[%H:%M:%S.%f] [%L] [thread:%t] [%!](%s:%#): %v%$");
         console_sink->set_level(static_cast<spdlog::level::level_enum>(console_level));
         std::string logFileName = Utils::get_log_name();
         auto file_sink = std::make_shared<spdlog::sinks::basic_file_sink_mt>(logFileName, true);
-        file_sink->set_pattern("%^[%Y.%m.%d %H:%M:%S.%F] [%t]:[%l] [%s:%#]%$ : %v");
+        file_sink->set_pattern("%^[%Y.%m.%d %H:%M:%S.%F] [%l] [thread:%t]: [%!](%s:%#)%$ : %v");
         file_sink->set_level(static_cast<spdlog::level::level_enum>(file_level));
 
         std::shared_ptr<spdlog::logger> logger = std::make_shared<spdlog::logger>("root", spdlog::sinks_init_list({console_sink, file_sink}));
