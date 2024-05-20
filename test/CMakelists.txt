@@ -1,6 +1,6 @@
 AUX_SOURCE_DIRECTORY("${PROJECT_SOURCE_DIR}/test" DIR_TESTS)
 MESSAGE("DIR_TESTS is  ${DIR_TESTS}.")
-set(SRC "${PROJECT_SOURCE_DIR}/src" )
+set(test_SRC "${PROJECT_SOURCE_DIR}/test" )
 
 INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/include")
 
@@ -10,7 +10,4 @@ add_executable(spdlog_test
   ${DIR_TESTS}
 )
 target_include_directories(spdlog_test PRIVATE ${SPDLOG_INCLUDE_DIR})
-target_link_libraries(
-    spdlog_test
-    ${SPDLOG_LIB}
-)
+target_link_libraries(spdlog_test ${SPDLOG_LIB})

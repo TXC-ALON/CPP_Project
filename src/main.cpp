@@ -1,5 +1,4 @@
 #include "Initial.h"
-
 void workerFunc(int workerId)
 {
     // 创建日志记录器
@@ -13,7 +12,7 @@ void workerFunc(int workerId)
 }
 int main()
 {
-    Turn_on_Log(1, 0);
+    Turn_on_Log(0, 0);
 
     std::vector<std::thread> workers;
     for (int i = 1; i <= 3; ++i)

@@ -13,7 +13,7 @@ elseif(UNIX)
 endif()
 
 #基本配置
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 SET(CMAKE_BUILD_TYPE "Debug")  # Debug模式 选项: Release Debug MinSizeRel RelWithDebInfo
 # SET(CMAKE_CXX_FLAGS_DEBUG "$ENV{CXXFLAGS} -O0 -Wall -g2 -ggdb")  # debug模式下 gdb相关选项
 # SET(CMAKE_CXX_FLAGS_RELEASE "$ENV{CXXFLAGS} -O3 -Wall") # release模式下 gdb相关选项
@@ -38,7 +38,7 @@ set(SPDLOG_LIB_D ${SPDLOG_PATH}/lib/spdlogd.lib)
 # 可以继续添加其他库的路径和名称
 
 # 添加可执行文件
-add_executable(MyProject  # 输出名为chess的可执行文件
+add_executable(MyProject  # 输出可执行文件
    ${DIR_SRCS}
 )
 #add_executable(MyProject src/main.cpp)
