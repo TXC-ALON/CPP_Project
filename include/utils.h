@@ -8,8 +8,12 @@
 using namespace spdlog::sinks;
 namespace Utils
 {
-    std::string get_log_name();
-    void set_multi_sink(int console_level = 1, int file_level = 0);
-    void Turn_on_Log(int console_level = 1, int file_level = 0);
-    void Turn_off_Log();
+    namespace LOG
+    {
+        std::string get_log_name();
+        void set_multi_sink(int console_level = 1, int file_level = 0);
+        void Turn_on_Log(int console_level = 1, int file_level = 0);
+        void Turn_off_Log();
+    };
+
 };

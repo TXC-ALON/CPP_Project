@@ -12,7 +12,7 @@ void workerFunc(int workerId)
 }
 int main()
 {
-    Turn_on_Log(0, 0);
+    LOG::Turn_on_Log(0, 0);
 
     std::vector<std::thread> workers;
     for (int i = 1; i <= 3; ++i)
@@ -25,10 +25,10 @@ int main()
     {
         worker.join();
     }
-    spdlog::set_pattern("[%H:%M:%S.%f] [%l] [%!][%s:%#]: %^%v%$");
-    // Compile time log levels
-    // Note that this does not change the current log level, it will only
-    // remove (depending on SPDLOG_ACTIVE_LEVEL) the call on the release code.
+    // spdlog::set_pattern("[%H:%M:%S.%f] [%l] [%!][%s:%#]: %^%v%$");
+    //  Compile time log levels
+    //  Note that this does not change the current log level, it will only
+    //  remove (depending on SPDLOG_ACTIVE_LEVEL) the call on the release code.
     LOG_TRACE("Some trace message with param {}", 42);
     LOG_DEBUG("Some debug message");
     LOG_WARN("Some WARNING message");
