@@ -1,0 +1,52 @@
+# 设置GoogleTest库的一些lib
+set(GoogleTest_INCLUDE_DIR ${GOOGLE_TEST_PATH}/include)
+message(STATUS "GoogleTest_INCLUDE_DIR IS ${GoogleTest_INCLUDE_DIR}")
+set(GoogleTest_LIB_PATH_D ${GOOGLE_TEST_PATH}/lib/Debug)
+set(GoogleTest_LIB_PATH ${GOOGLE_TEST_PATH}/lib/Release)
+
+
+message("GoogleTest_INCLUDE_DIR is ${GoogleTest_INCLUDE_DIR}")
+message("GoogleTest_LIB_PATH_D is ${GoogleTest_LIB_PATH} ")
+include_directories(${GoogleTest_INCLUDE_DIR})
+link_directories(${GoogleTest_LIB_PATH})
+set(CMAKE_VERBOSE_MAKEFILE OFF)
+set(test_SRC "${PROJECT_SOURCE_DIR}/test/GTest" )
+
+INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/include")
+
+SET(EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/bin/test/google_test")
+
+add_library(libgtest IMPORTED STATIC GLOBAL)
+add_dependencies(libgtest gtest)
+
+# Set libgtest properties
+set_target_properties(libgtest PROPERTIES
+    "IMPORTED_LOCATION" "${GoogleTest_LIB_PATH}/gtest.lib"
+    "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
+)
+
+# Create a libgmock target to be used as a dependency by test programs
+add_library(libgmock IMPORTED STATIC GLOBAL)
+add_dependencies(libgmock gmock)
+
+# Set libgmock properties
+set_target_properties(libgmock PROPERTIES
+    "IMPORTED_LOCATION" "${GoogleTest_LIB_PATH}/gmock.lib"
+    "IMPORTED_LINK_INTERFACE_LIBRARIES" "${CMAKE_THREAD_LIBS_INIT}"
+)
+
+# if(WIN32)
+#     set(CMAKE_CXX_FLAGS_RELEASE "/MT")
+#     set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
+#     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /NODEFAULTLIB:msvcrtd")
+# endif()
+
+add_executable(Gtest main.cpp)
+
+target_link_libraries(Gtest
+    libgtest
+    libgmock
+)
+
+add_test(NAME Gtest
+         COMMAND success)

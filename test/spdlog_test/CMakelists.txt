@@ -1,0 +1,18 @@
+# 设置SPDLOG库的一些lib
+set(SPDLOG_INCLUDE_DIR ${SPDLOG_PATH}/include)
+message(STATUS "SPDLOG_INCLUDE_DIR IS ${SPDLOG_INCLUDE_DIR}")
+set(SPDLOG_LIB ${SPDLOG_PATH}/lib/spdlog.lib)
+set(SPDLOG_LIB_D ${SPDLOG_PATH}/lib/spdlogd.lib)
+
+
+AUX_SOURCE_DIRECTORY("${PROJECT_SOURCE_DIR}/test/spdlog_test" DIR_TESTS)
+MESSAGE("DIR_TESTS is  ${DIR_TESTS}")
+set(test_SRC "${PROJECT_SOURCE_DIR}/test/spdlog_test" )
+
+INCLUDE_DIRECTORIES("${PROJECT_SOURCE_DIR}/include")
+
+SET(EXECUTABLE_OUTPUT_PATH "${PROJECT_SOURCE_DIR}/bin/test/spdlog_test")
+
+add_executable(spdlog_test ${DIR_TESTS})
+target_include_directories(spdlog_test PRIVATE ${SPDLOG_INCLUDE_DIR})
+target_link_libraries(spdlog_test ${SPDLOG_LIB})
